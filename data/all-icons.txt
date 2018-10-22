@@ -337,9 +337,6 @@ home
 hospital-o
 hotel
 hourglass
-hourglass-1
-hourglass-2
-hourglass-3
 hourglass-end
 hourglass-half
 hourglass-o

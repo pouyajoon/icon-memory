@@ -63,10 +63,11 @@ function setupExpress() {
     var playerId = Math.floor(Math.random() * 10000);
     s.playerId = playerId;
     s.playerName = 'Player ' + playerId;
-    console.log('User connected');
+    console.log('User connected', s.playerId, s.playerName);
     s.emit('game-state', getGameState());
 
     s.on('send-info', function (data) {
+      console.log('send info', data);
       s.playerName = data.playerName;
       s.color = data.color;
       broadcastGameState();
@@ -85,9 +86,10 @@ function setupExpress() {
       var idx = sockets.indexOf(s);
       if (idx != -1) sockets.splice(s, 1);
       broadcastGameState();
-      console.log('User disconnected');
+      console.log('User disconnected', idx);
     });
     s.on('reset', (data, cb) => {
+      sockets = [];
       initBoard();
       broadcastGameState();
     });
